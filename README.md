@@ -52,7 +52,7 @@ pio.renderers.default = "browser"
 fig3.show()
 ```
 <p align="center">
-<img src="images/world_data_table.png" alt="Plot" width="100%"/>
+<img src="images/Deaths_Population_Country.png" alt="Plot" width="100%"/>
 
 The total number of deaths per 100,000 persons in every country can be determined using this data. The data frame is then updated with this value, and a global map is produced.  The colour gradient shows the COVID-19 outbreak per country in terms of fatalities.
 
