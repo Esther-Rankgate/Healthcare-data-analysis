@@ -7,28 +7,28 @@ import plotly.io as pio
 import plotly.graph_objects as go
 
 #import, sort and create new data frame
-Data = pd.read_csv("worldometer_coronavirus_summary_data.csv")
-countries = Data["country"].unique()
-countryname = []
-deaths = []
-population = []
+Data = pd.read_csv("worldometer_coronavirus_summary_data.csv")                                            #read that data using pandas
+view = Data[['country', 'total_deaths', 'population']]                                                    # pick out specific columns
+view = view.rename(columns={'country': 'Country', 'total_deaths': 'Deaths', 'population': 'Population' }) # rename those columns
 
-for country in countries: 
-    currentcountry = Data[(Data['country'] == country)]
-    countryname.append(country)
-    deaths.append(currentcountry['total_deaths'].sum())
-    population.append(currentcountry['population'].sum())
-
-newData = pd.DataFrame({'Country': countryname,'Total_deaths': deaths, 'Population': population})
-
-fig3 = go.Figure(data=[go.Table(
-    header=dict(values=list(newData.columns),
+fig3 = go.Figure(data=[go.Table(                                                                          # display the table using plotly
+    header=dict(values=list(view.columns),
                 fill_color='paleturquoise',
                 align='left'),
-    cells=dict(values=[newData.Country, newData.Total_deaths, newData.Population],
+    cells=dict(values=[view.Country, view.Deaths, view.Population],
                fill_color='lavender',
                align='left'))
 ])
+fig3.update_layout(
+    title=dict(
+        text="<b>COVID-19 Statistics by Country</b>", # HTML tags like <b> work for bolding
+        font=dict(size=24, color="black"),            # Change font size and color
+        x=0.5,                                        # Centers the title (0 = left, 1 = right)
+        xanchor='center'
+    ),
+    margin=dict(t=60) # Adds top margin space so the title doesn't overlap the table
+)
+
 pio.renderers.default = "browser"
 fig3.show()
 
