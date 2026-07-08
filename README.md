@@ -1,14 +1,9 @@
 # COVID-19-deaths
 
 ## Objective
-The objective of this project is to quantitatively assess the global impact of COVID-19. One method of evaluating this impact is by analyzing the number of deaths per 100,000 people. Since the onset of the pandemic in 2020, COVID-19 has resulted in 27 million deaths worldwide by August 2024, placing immense strain on economies and healthcare systems. Throughout the pandemic, various political measures were implemented to control the spread and reduce the death toll, often supported by data-driven research. This project aims to provide a scientific foundation for future policy decisions that countries can adopt to better withstand future pandemics.
+This project uses python to assess the global impact of COVID-19. The number of deaths per 100,000 people is used as a normalised meteric to measure the severity by country. Since the onset of the pandemic in 2020, COVID-19 has placed immense strain on golbal economies and healthcare systems. This project aims to demonstrate the application of data analysis to a real-world healthcare large data-set, providing insight into how quantitative methods can support public healthcare decisions.
 
-## Method 
-Global COVID-19 total death data in May 2022, **_[worldometer_coronavirus_summary_data.csv](data-and-code/worldometer_coronavirus_summary_data.csv)_**, is analyzed using Python to identify the country most severely impacted by the pandemic, based on deaths per 100,000 population. Countries are ranked accordingly to highlight disparities in outcomes. A focused case study is then conducted on the most affected country to examine systemic weaknesses within its healthcare infrastructure and public health response. Based on these findings, policy recommendations are proposed to help other nations strengthen their preparedness and resilience, thereby mitigating the impact of future pandemics. 
-
-```math
-death\_per\_100,000\_population = \frac{total\_deaths}{population} \times 100,000
-```
+The analysis includes data processing, statistical calculations, and visualisation to identify trends and compare outcomes across countries. A case study of the most affected country is then used to explore factors that may have contributed to the high COVID mortality rate. This illustrates how quantitative analysis can be applied to investigate complex healthcare challenges.
 
 ## The Code
 ### Libraries Used
@@ -147,12 +142,10 @@ fle.show()
 <p align="center">
 <img src="images/newplot (1).png" alt="Plot" width="100%"/>
 
-## Conclusion: COVID-19 in Peru 2022
-In 2022, Peru recorded more COVID-19 deaths per 100,000 inhabitants than any other country in the world. As of December 31, 2020—marking the end of the first year of the pandemic—there had been a total of 1,017,199 confirmed cases and 37,724 deaths. The country's healthcare system was overwhelmed, with fewer than 1,500 ICU beds available nationwide—an insufficient capacity for Peru’s population of over 32 million. The daily death data shows that fatalities peaked on July 16, 2020, with 808 reported deaths in a single day. This occurred despite Peru being one of the first countries in Latin America to implement a national lockdown. The government closed its borders until October 2020 and enforced a mandatory nationwide quarantine. All schools remained closed throughout the year, except for approximately 1,000 schools that reopened briefly between October and November as cases began to decline. Following the gradual lifting of restrictions after the first wave, Peru experienced a second surge in COVID-19 deaths, reaching a peak of 1,154 fatalities on April 18, 2021. 
-
-Despite swift initial action, Peru was among the hardest-hit countries during the COVID-19 pandemic. This outcome highlights deeper systemic challenges, including weaknesses in healthcare infrastructure, economic inequality, and political instability—factors that severely limited the country’s ability to respond effectively to the crisis. One major issue was underinvestment in the healthcare sector. Only 4% of Peru’s GDP was allocated to healthcare, resulting in a critical shortage of ICU beds and inadequate access to primary care facilities. Economically, insufficient investment in impoverished communities left many vulnerable. Although the government attempted to provide financial aid to those living in extreme poverty, poor implementation meant that the funds often failed to reach the intended recipients. As a result, many citizens were forced to disregard lockdown measures to access food and essential goods in public markets and streets. Politically, the pandemic exposed instability in health sector leadership. Within the first four months of the crisis, three different health ministers were appointed, leading to inconsistent policy guidance and a fragmented national response. Coordination between regional and national governments was weak, with many acting independently, further complicating efforts to contain the virus.
-
-This analysis underscores the critical importance of investing in healthcare infrastructure, ensuring effective financial aid distribution, and maintaining strong political coordination—factors that have proven to significantly influence mortality outcomes during pandemics and will remain essential in mitigating the impact of future health crises. 
+## Conclusion
+The analysis identified Peru as the country with the highest reported COVID-19 mortality rate per 100,000 population in the dataset. A case study of Peru demonstrated how quantitative analysis can be used to investigate the relationship between mortality outcomes and the country's healcare system. The findings suggest that high mortality rates were associated with multiple factors, including poor healthcare infrustructure. During the early stages of the pandemic, Peru had fewer than 1,500 ICU beds for a population of more than 32 million, placing significant strain on the healthcare system. Although early public health interventions, including lockdowns, were implemented, subsequent waves of infection continued to result in substantial mortality.
+ 
+This project demonstrates the value of data analysis and scientific computing in exploring large healthcare datasets and communicating quantitative findings through clear visualisation and statistical comparison. It highlights how population-level data can be used to support the investigation of public health challenges.
 
 ### References
 - https://ourworldindata.org/key-charts-understand-covid-pandemic
