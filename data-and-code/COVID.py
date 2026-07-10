@@ -33,19 +33,19 @@ pio.renderers.default = "browser"
 fig3.show()
 
 #calculate total deaths per 100,000 in each country and display as colored map 
-per = []
-for i in range(0,226,1):
-    result = (newData.iloc[i,1] / newData.iloc[i,2]) * 100000
-    per.append(result)
-perarray = np.array(per)
+def func(group):
+    td = group['Deaths']
+    tp = group['Population']
 
-newData1 = pd.DataFrame({'Country': countryname,'Total deaths': deaths, 'Population': population, 'Death per 100,000': perarray})
-
+    rate = (td/tp) * 100000
+    return rate
+country_rate = (view.groupby('Country').apply(func, include_groups=False))
+country_rate = country_rate.reset_index(name='Deaths per 100,000')
 fig = px.choropleth(
-    newData1,
+    country_rate,
     locations="Country",
     locationmode="country names",         
-    color="Death per 100,000",              
+    color="Deaths per 100,000",              
     hover_name="Country",           
     color_continuous_scale="Reds", 
     title="Covid 19 deaths per 100,000 by country 2020",
@@ -64,30 +64,35 @@ fig.show()
 
 #bar graph of COVID-19 fatality data in South America 
 Data1 = Data[Data["continent"] == 'South America']
+view1 = Data1[['country', 'total_deaths', 'population']]
+view1 = view1.rename(columns={'country': 'Country', 'total_deaths': 'Deaths', 'population': 'Population' })
 
-countries1 = Data1["country"].unique()
-countryname1 = []
-death = []
-popu = []
+sa_rate = (view1.groupby('Country').apply(func, include_groups=False))
+sa_rate = sa_rate.reset_index(name='Deaths per 100,000')
 
-for country in countries1:
-    currentcountry = Data1[(Data1['country'] == country)]
-    countryname1.append(country)
-    death.append(currentcountry['total_deaths'].sum())
-    popu.append(currentcountry['population'].sum())
-
-newData2 = pd.DataFrame({'Country': countryname1, 'Total Deaths': death, 'Population': popu})
-
-perr = []
-for i in range(0,14,1):
-    result = (newData2.iloc[i,1] / newData2.iloc[i,2]) * 100000
-    perr.append(result)
-perrarray = np.array(perr)
-
-newData3 = pd.DataFrame({'Country': countryname1,'Death per 100,000': perrarray})
-
-fig1 = px.bar(newData3, y='Death per 100,000', x='Country', text_auto='.2s',
+fig1 = px.bar(sa_rate, y='Deaths per 100,000', x='Country', text_auto='.2s',
             title="Total Deaths per 100,000 due to COVID 19 in South America")
 fig1.update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
 pio.renderers.default = "browser"
 fig1.show()
+
+#daily data in peru 
+df = pd.read_csv("worldometer_coronavirus_daily_data.csv")
+df["date"] = pd.to_datetime(df["date"])
+
+peru_df = df[
+    (df["country"] == "Peru") &
+    (df["date"] >= "2020-02-15") &
+    (df["date"] <= "2022-05-14")
+]
+
+fig = px.scatter(
+    peru_df,
+    x="date",
+    y="daily_new_deaths",
+    trendline="lowess",
+    trendline_options={"frac": 0.03},
+    title="Daily New Deaths in Peru (2020–2022)"
+)
+
+fig.show()
